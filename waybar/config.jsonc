@@ -1,0 +1,94 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 0,
+  "exclusive": true,
+  "gtk-layer-shell": true,
+  "passthrough": false,
+  "fixed-center": true,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["mpris", "custom/notification"],
+  "modules-right": [
+    "custom/updates",
+    "custom/bluetooth",
+    "pulseaudio",
+    "tray",
+    "custom/weather",
+    "clock",
+  ],
+  "tray": {
+    "show-passive-items": true,
+    "spacing": 8,
+  },
+  "hyprland/workspaces": {
+    "persistent-workspaces": {
+      "DP-1": [1, 2, 3, 4],
+    },
+  },
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "format-alt": "<span color='#ff9854'>   </span>{:%a %b %d}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+  },
+  "mpris": {
+    "format": "{player_icon} {artist} - {title}",
+    "format-paused": "{status_icon} {artist} - {title}",
+    "player-icons": {
+      "default": "  ",
+    },
+    "status-icons": {
+      "paused": "  ",
+    },
+    // "ignored-players": ["firefox"]
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}",
+    "format-muted": " ",
+    "format-icons": {
+      "default": ["   ", "   ", "   "],
+    },
+    "on-click": "pavucontrol",
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon} Notifications",
+    "format-icons": {
+      "notification": "󱅫 ",
+      "none": "󰂚 ",
+      "dnd-notification": "󰂛 ",
+      "dnd-none": "󰂛 ",
+      "inhibited-notification": "󱅫 ",
+      "inhibited-none": "󰂚 ",
+      "dnd-inhibited-notification": "󰂛 ",
+      "dnd-inhibited-none": "󰂛 ",
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true,
+  },
+  "custom/bluetooth": {
+    "format": " {}",
+    "exec": "~/.config/waybar/scripts/bluetooth.sh",
+    "interval": 5,
+    "tooltip": false,
+    "on-click": "blueman-manager",
+  },
+  "custom/weather": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/weather.sh",
+    "interval": 300,
+    "tooltip": false,
+  },
+  "custom/updates": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/updates.sh",
+    "return-type": "json",
+    "interval": 600,
+    "tooltip": true,
+    "on-click": "kitty -e yay ; pkill -RTMIN+8 waybar",
+    "signal": 8,
+  },
+}

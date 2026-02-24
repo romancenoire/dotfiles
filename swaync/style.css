@@ -1,0 +1,209 @@
+@define-color center-bg       rgba(0, 0, 0, 0.25);
+@define-color background      rgba(0, 0, 0, 0.5);
+@define-color text            #ffffff;
+@define-color text-alt        #ffffffd0;
+@define-color background-alt  rgba(0, 0, 0, 0.25);
+@define-color selected        alpha(@text-alt, .4);
+@define-color hover           alpha(@selected, .4);
+@define-color urgent          @text-alt;
+
+* {
+  color: @text;
+  all: unset;
+  font-size: 0.95rem;
+  font-family: "SF Display Pro";
+  transition: 200ms;
+  font-weight: 700;
+}
+
+.notification {
+  padding: 0 5px;
+  border-radius: 15px;
+  color: @text;
+}
+
+.notification-background {
+  background: @background;
+  box-shadow: none;
+  border-radius: 15px;
+  margin: 8px;
+}
+
+.notification-row .inline-reply-entry {
+  padding: 5px 10px;
+  background: @background-alt;
+  border-radius: 15px;
+}
+
+.notification-row .inline-reply-button {
+  padding: 5px 10px;
+  border-radius: 15px;
+  background: @hover;
+}
+
+.notification-row .inline-reply .inline-reply-button:hover {
+  background: @selected;
+}
+
+.notification-content image {
+  border-radius: 50%;
+}
+
+.notification .notification-content {
+  margin: 10px;
+}
+
+.notification-content .text-box {
+  margin: 0 0 0 15px;
+}
+
+.notification-content .time {
+  font-size: 0.95rem;
+  padding: 2px 0;
+  font-weight: 800;
+}
+
+.notification .summary {
+  font-weight: 600;
+  margin-bottom: 0px;
+  font-size: 13px;
+}
+
+.notification .body {
+  color: @text-alt;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 5px;
+
+}
+
+.notification.critical {
+  border-color: @urgent;
+}
+
+.notification.low progress,
+.notification.normal progress,
+.notification.critical progress {
+  background: @selected;
+}
+
+.notification-background .close-button {
+  margin: 6px;
+  padding: 2px;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.notification-background .close-button:hover {
+  background: @hover;
+}
+
+.notification > *:last-child > * {
+  min-height: 3.2em;
+}
+
+.notification > *:last-child > * .notification-action {
+  background: @hover;
+  margin: 0 6px 9px 6px;
+  border-radius: 8px;
+}
+
+.notification > *:last-child > * .notification-action:hover {
+  background: @selected;
+}
+
+.notification > *:last-child > * .notification-action:active {
+  background: @selected;
+}
+
+.control-center {
+  background: @center-bg;
+  border-radius: 15px;
+  margin: 5px;
+  padding: 12px;
+}
+
+
+.control-center .notification-background {
+  background: @background-alt;
+  margin: 7px 0;
+}
+
+/* I dont want to see close buttons in notification center */
+.control-center .notification-background .close-button,
+.notification-group-close-button{
+  opacity: 0;
+}
+
+/* Notifications expanded-group */
+.notification-group {
+  margin: 0px 8px;
+}
+
+.notification-group-headers {
+  font-weight: bold;
+  color: @text;
+}
+
+.notification-group-headers > label {
+  margin: 0 3px;
+  font-size: 1rem;
+}
+
+.notification-group-icon {
+  color: @text;
+}
+
+.notification-group-collapse-button,
+.notification-group-close-all-button {
+  background: transparent;
+  color: @text;
+  margin: 4px; 
+  border-radius: 6px;
+  padding: 4px;
+}
+
+/* Do not disturb */
+.widget-dnd {
+  padding: 8px 14px; 
+  border-radius: 12px;
+  margin: 5px 0;
+  color: @text;
+  background: @background-alt;
+}
+
+.widget-dnd > label {
+  font-size: 1rem;
+}
+
+.widget-dnd switch {
+  background: @hover;
+  border-radius: 8px;
+  box-shadow: none;
+  padding: 2px;
+}
+
+.widget-dnd switch slider {
+  background: @text;
+  border-radius: 8px;
+}
+
+/* Change color for plaseholder when no notifications */
+.control-center-list-placeholder {
+  color: @text;
+}
+
+/* Avoid 'annoying' backgroud */
+.blank-window {  
+  background: transparent;  
+}
+
+/* Make invisible the content of collapsed notification groups */
+
+.notification-group.collapsed .notification-row:not(:last-child) .notification-content {
+    opacity: 0;
+}
+
+.notification-group.collapsed .notification-row:not(:last-child) .close-button {
+    opacity: 0;
+}

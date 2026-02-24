@@ -1,0 +1,52 @@
+window {
+    font-family: 'SF Pro Display', sans-serif;
+    font-size: 11pt;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+grid {
+    margin-top: 250px;
+    margin-bottom: 200px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+button {
+    background-repeat: no-repeat;
+    background-position: center 35%;
+    background-size: 20%; 
+    
+    border: none;
+    box-shadow: none; 
+    background-color: rgba(0, 0, 0, 0.35); 
+    margin: 15px; 
+    border-radius: 15px;
+    transition: 200ms;
+    color: #ffffff;
+    
+    min-height: 100px;
+    min-width: 100px; /* ← seul ajout, rend les boutons carrés */
+    padding-top: 0px;
+    padding-bottom: 20px;
+    border: 1px solid transparent;
+    transition: 200ms ease;
+}
+button:hover {
+    background-color: rgba(255, 255, 255, 0.1); 
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 9px;
+    margin-bottom: 21px;
+}
+button:focus {
+    background-color: rgba(0, 0, 0, 0.35);
+    outline: none;
+    box-shadow: none;
+}
+button:focus:hover {
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+#lock      { background-image: image(url("icons/lock.png")); }
+#logout    { background-image: image(url("icons/logout.png")); }
+#shutdown  { background-image: image(url("icons/shutdown.png")); }
+#reboot    { background-image: image(url("icons/reboot.png")); }

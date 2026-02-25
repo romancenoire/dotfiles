@@ -23,11 +23,12 @@
   "hyprland/workspaces": {
     "persistent-workspaces": {
       "DP-1": [1, 2, 3, 4],
+      "HDMI-A-1": [5, 6],
     },
   },
   "clock": {
     "format": "{:%I:%M %p}",
-    "format-alt": "<span color='#ff9854'>   </span>{:%a %b %d}",
+    "format-alt": "{:%a %b %d}",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
   },
   "mpris": {
@@ -50,24 +51,24 @@
     "on-click": "pavucontrol",
   },
   "custom/notification": {
-    "tooltip": false,
-    "format": "{icon} Notifications",
+    "tooltip": true,
+    "format": "{icon}  Notifications",
     "format-icons": {
-      "notification": "󱅫 ",
-      "none": "󰂚 ",
-      "dnd-notification": "󰂛 ",
-      "dnd-none": "󰂛 ",
-      "inhibited-notification": "󱅫 ",
-      "inhibited-none": "󰂚 ",
-      "dnd-inhibited-notification": "󰂛 ",
-      "dnd-inhibited-none": "󰂛 ",
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂠",
+      "dnd-none": "󰪓",
+      "inhibited-notification": "󰂛",
+      "inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰪑"
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
     "exec": "swaync-client -swb",
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
-    "escape": true,
+    "escape": true
   },
   "custom/bluetooth": {
     "format": " {}",
@@ -79,7 +80,7 @@
   "custom/weather": {
     "format": "{}",
     "exec": "~/.config/waybar/scripts/weather.sh",
-    "interval": 300,
+    "interval": 900,
     "tooltip": false,
   },
   "custom/updates": {

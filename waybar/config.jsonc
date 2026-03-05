@@ -32,15 +32,15 @@
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
   },
   "mpris": {
-    "format": "{player_icon} {artist} - {title}",
-    "format-paused": "{status_icon} {artist} - {title}",
+    "format": "{player_icon}  {artist} - {title}",
+    "format-paused": "{status_icon}  {artist} - {title}",
     "player-icons": {
-      "default": "  ",
+      "default": "",
     },
     "status-icons": {
-      "paused": "  ",
+      "paused": "",
     },
-    // "ignored-players": ["firefox"]
+    "ignored-players": ["firefox"]
   },
   "pulseaudio": {
     "format": "{icon} {volume}",
@@ -55,7 +55,7 @@
     "format": "{icon}  Notifications",
     "format-icons": {
       "notification": "󱅫",
-      "none": "󰂜",
+      "none": "󰂚",
       "dnd-notification": "󰂠",
       "dnd-none": "󰪓",
       "inhibited-notification": "󰂛",
@@ -71,7 +71,7 @@
     "escape": true
   },
   "custom/bluetooth": {
-    "format": " {}",
+    "format": "󰂯  {}",
     "exec": "~/.config/waybar/scripts/bluetooth.sh",
     "interval": 5,
     "tooltip": false,
@@ -80,16 +80,17 @@
   "custom/weather": {
     "format": "{}",
     "exec": "~/.config/waybar/scripts/weather.sh",
-    "interval": 900,
-    "tooltip": false,
+    "return-type": "json",
+    "interval": 300,
+    "tooltip": true,
   },
   "custom/updates": {
-    "format": "{}",
-    "exec": "~/.config/waybar/scripts/updates.sh",
+    "format": "  {}",
+    "exec": "~/.config/waybar/scripts/checkupdates.sh",
     "return-type": "json",
-    "interval": 600,
+    "interval": 900,
     "tooltip": true,
-    "on-click": "kitty -e yay ; pkill -RTMIN+8 waybar",
-    "signal": 8,
-  },
+    "on-click": "kitty -e ~/.config/waybar/scripts/update-all.sh",
+    "signal": 4,
+  }
 }

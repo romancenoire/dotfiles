@@ -1,28 +1,21 @@
 #!/bin/bash
 
-RES1_W=960; RES1_H=540
-RES2_W=854; RES2_H=480
-RES3_W=640; RES3_H=360
+PIP_W=854; PIP_H=480
 PADDING=32
-SCREEN_W=1920
-SCREEN_H=1080
 
-WINDOW_INFO=$(hyprctl activewindow -j)
-ADDR=$(echo "$WINDOW_INFO" | jq -r '.address')
-CUR_W=$(echo "$WINDOW_INFO" | jq '.size[0]')
+read ADDR IS_PINNED < <(hyprctl activewindow -j | jq -r '[.address, (.pinned | tostring)] | @tsv')
 
-hyprctl dispatch setfloating address:$ADDR
-hyprctl dispatch pin address:$ADDR
-
-if [ "$CUR_W" -eq $RES1_W ]; then
-    W=$RES2_W; H=$RES2_H
-elif [ "$CUR_W" -eq $RES2_W ]; then
-    W=$RES3_W; H=$RES3_H
-else
-    W=$RES1_W; H=$RES1_H
+if [ "$IS_PINNED" = "true" ]; then
+    hyprctl --batch "dispatch unpin address:$ADDR ; dispatch settiled address:$ADDR"
+    notify-send "Picture in Picture" "Désactivé" -u low -i video-display
+    exit 0
 fi
 
-POS_X=$((SCREEN_W - W - PADDING))
-POS_Y=$((SCREEN_H - H - PADDING))
+read SCREEN_X SCREEN_Y SCREEN_W SCREEN_H < <(hyprctl monitors -j | jq -r '.[] | select(.focused) | [.x, .y, .width, .height] | @tsv')
 
-hyprctl --batch "dispatch resizewindowpixel exact $W $H,address:$ADDR ; dispatch movewindowpixel exact $POS_X $POS_Y,address:$ADDR"
+POS_X=$((SCREEN_X + SCREEN_W - PIP_W - PADDING))
+POS_Y=$((SCREEN_Y + SCREEN_H - PIP_H - PADDING))
+
+hyprctl --batch "dispatch setfloating address:$ADDR ; dispatch pin address:$ADDR ; dispatch resizewindowpixel exact $PIP_W $PIP_H,address:$ADDR ; dispatch movewindowpixel exact $POS_X $POS_Y,address:$ADDR"
+
+notify-send "Picture in Picture" "Activé (${PIP_W}x${PIP_H})" -u low -i video-display

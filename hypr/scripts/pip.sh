@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PIP_W=854; PIP_H=480
+PIP_W=426; PIP_H=240
 PADDING=32
 
 read ADDR IS_PINNED < <(hyprctl activewindow -j | jq -r '[.address, (.pinned | tostring)] | @tsv')

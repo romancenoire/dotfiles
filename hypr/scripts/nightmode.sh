@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TEMP="${HYPRSUNSET_TEMP:-4000}"
+TEMP="${HYPRSUNSET_TEMP:-3000}"
 GAMMA="${HYPRSUNSET_GAMMA:-75}"
 STATE_FILE="/tmp/hyprsunset_state"
 

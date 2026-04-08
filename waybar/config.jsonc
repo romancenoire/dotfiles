@@ -9,9 +9,9 @@
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["mpris", "custom/notification"],
   "modules-right": [
-    "custom/updates",
-    "custom/bluetooth",
     "pulseaudio",
+    "network",
+    "bluetooth",
     "tray",
     "custom/weather",
     "clock",
@@ -43,12 +43,16 @@
     "ignored-players": ["firefox"]
   },
   "pulseaudio": {
-    "format": "{icon} {volume}",
-    "format-muted": " ",
-    "format-icons": {
-      "default": ["   ", "   ", "   "],
-    },
-    "on-click": "pavucontrol",
+      "format": "{icon}  {volume}  {format_source}",
+      "format-muted": "󰝟  MUTED  {format_source}",
+      "format-bluetooth": "󰂰  {volume}  {format_source}",
+      "format-source": "󰍬  {volume}",
+      "format-source-muted": "󰍭  MUTED",
+      "format-icons": {
+          "default": ["󰕿", "󰖀", "󰕾"],
+      },
+      "scroll-step": 1,
+      "on-click": "pavucontrol",
   },
   "custom/notification": {
     "tooltip": true,
@@ -70,27 +74,36 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
-  "custom/bluetooth": {
-    "format": "󰂯  {}",
-    "exec": "~/.config/waybar/scripts/bluetooth.sh",
-    "interval": 5,
-    "tooltip": false,
-    "on-click": "blueman-manager",
-  },
   "custom/weather": {
     "format": "{}",
     "exec": "~/.config/waybar/scripts/weather.sh",
     "return-type": "json",
-    "interval": 300,
+    "interval": 1000,
     "tooltip": true,
   },
-  "custom/updates": {
-    "format": "  {}",
-    "exec": "~/.config/waybar/scripts/checkupdates.sh",
-    "return-type": "json",
-    "interval": 900,
-    "tooltip": true,
-    "on-click": "kitty -e ~/.config/waybar/scripts/update-all.sh",
-    "signal": 4,
+  "network": {
+      "format": "{icon}",
+      "format-ethernet": "",
+      "format-wifi": "{icon}",
+      "format-disconnected": "󰤭",
+      "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+      "tooltip-format-wifi": "󰤨  {essid}\n  {signalStrength}%\n󰩟  {ipaddr}/{cidr}\n󰊗  {gwaddr}",
+      "tooltip-format-ethernet": "󰩟  {ipaddr}/{cidr}\n  {gwaddr}",
+      "tooltip-format-disconnected": "󰤭  Disconnected",
+      "on-click": "nm-connection-editor"
+  },
+  "bluetooth": {
+      "format": "󰂲",
+      "format-off": "󰂲",
+      "format-disabled": "",
+      "format-on": "󰂯",
+      "format-connected": "󰂱  {device_alias}",
+      "format-connected-battery": "󰂱",
+      "tooltip-format": "󰂯  {controller_alias}",
+      "tooltip-format-on": "󰂯  {controller_alias}\nNo device connected",
+      "tooltip-format-connected": "{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}",
+      "tooltip-format-enumerate-connected-battery": "  {device_alias}  {device_battery_percentage}%",
+      "on-click": "blueman-manager"
   }
 }

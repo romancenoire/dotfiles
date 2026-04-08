@@ -1,8 +1,8 @@
+@import "colors.css";
+
 * {
   min-height: 0;
-  font-family:
-    SF Pro Display,
-    JetBrainsMonoNerd Font;
+  font-family: "Inter", "Symbols Nerd Font";
   font-size: 13px;
   font-weight: 600;
 }
@@ -10,7 +10,7 @@
 window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: @surface-alpha-primary;
 }
 
 window#waybar.hidden {
@@ -18,7 +18,7 @@ window#waybar.hidden {
 }
 
 #workspaces {
-  background: rgba(0, 0, 0, 0.2);
+  background: @surface-alpha-secondary;
   margin: 5px 5px;
   padding: 0px;
   border-radius: 15px;
@@ -26,11 +26,11 @@ window#waybar.hidden {
   font-style: normal;
   opacity: 0.8;
   font-size: 16px;
-  color: #ffffff;
+  color: @on_surface;
 }
 
 #workspaces :hover {
-  background: rgba(0, 0, 0, 0.2);
+  background: @surface-alpha-secondary;
 }
 
 #workspaces button {
@@ -38,15 +38,15 @@ window#waybar.hidden {
   margin: 3px 3px;
   border-radius: 10px;
   border: 0px;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.2);
+  color: @on_surface;
+  background-color: @surface-alpha-secondary;
   transition: all 0.2s ease-in-out;
   opacity: 1;
 }
 
 #workspaces button.active {
   color: #000;
-  background: #fff;
+  background: @on_surface;
   border-radius: 15px;
   min-width: 48px;
   transition: all 0.2s ease-in-out;
@@ -54,7 +54,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.urgent {
-  background-color: #ff441f;
+  background-color: @primary;
 }
 
 #custom-notification,
@@ -67,9 +67,9 @@ window#waybar.hidden {
 #mpris {
   padding: 0px 8px;
   margin: 6px 3px;
-  color: #e5e5e5;
+  color: @on_surface;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: @surface-alpha-secondary;
 }
 
 #tray {
@@ -77,13 +77,33 @@ window#waybar.hidden {
 }
 
 #clock {
-  color: #e3e3e3;
-}
-
-#pulseaudio.muted {
-  color: #ff5b45;
+  color: @on_surface;
 }
 
 tooltip {
   border-radius: 8px;
+  background-color: @surface-alpha-secondary;
+}
+
+#network,
+#bluetooth {
+    padding: 0px 8px;
+    margin: 6px 0px;
+    color: @on_surface;
+    background-color: @surface-alpha-secondary;
+    border-radius: 0px;
+}
+
+#network {
+    border-radius: 10px 0px 0px 10px;
+    padding-left: 10px;
+    margin-left: 3px;
+    padding-right: 6px;
+}
+
+#bluetooth {
+    border-radius: 0px 10px 10px 0px;
+    padding-right: 10px;
+    margin-right: 3px;
+    padding-left: 6px;
 }

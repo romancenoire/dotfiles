@@ -46,7 +46,7 @@ current_temp=$(echo "$json" | python3 -c "import sys,json; d=json.load(sys.stdin
 sunrise=$(echo      "$json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['weather'][0]['astronomy'][0]['sunrise'])")
 sunset=$(echo       "$json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['weather'][0]['astronomy'][0]['sunset'])")
 
-now_min=$(to_min "$(date +'%I:%M %p')")
+now_min=$(date +"%H:%M" | awk -F: '{print $1*60 + $2}')
 rise_min=$(to_min "$sunrise")
 set_min=$(to_min "$sunset")
 

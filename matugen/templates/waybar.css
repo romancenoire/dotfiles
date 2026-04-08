@@ -1,0 +1,6 @@
+@define-color surface-alpha-primary {{colors.surface.default.rgba | set_alpha: 0.5}};
+@define-color surface-alpha-secondary {{colors.surface.default.rgba | set_alpha: 0.2}};
+
+<* for name, value in colors *>
+@define-color {{name}} {{value.default.hex}};
+<* endfor *>
